@@ -11,47 +11,47 @@ This project investigates that relationship by identifying farmer’s markets in
 The project team retrieved data in CSV format from:
 CDC/ATSDR Social Vulnerability Index 2000 Database US
 * STATE - State name
-COUNTY - County name
-E_TOTPOP - Population estimate, 2016-2020 ACS
-E_POV150 - Persons below 150% poverty estimate, 2016-2020 ACS (S1701_C01_040E)
-M_POV150 - Persons below 150% poverty estimate, 2016-2020 ACS (S1701_C01_040M)
-E_UNEMP - Civilian (age 16+) unemployed estimate, 2016-2020 ACS (DP03_0005E)
-M_UNEMP - Civilian (age 16+) unemployed estimate, 2016-2020 ACS
-(DP03_0005M)
-E_HBURD - Housing cost-burdened occupied housing units with annual income less than $75,000 (30%+ of income spent on housing costs) estimate, 2016-2020 ACS
-M_HBURD - Housing cost-burdened occupied housing units with annual income less than $75,000 (30%+ of income spent on housing costs) estimate MOE, 2016-2020 ACS
-E_NOHSDP - Persons (age 25+) with no high school diploma estimate, 2016-2020 ACS
-M_NOHSDP - Persons (age 25+) with no high school diploma estimate MOE, 2016-2020 ACS
-E_UNINSUR - Uninsured in the total civilian noninstitutionalized population estimate, 2016-2020 ACS
-M_UNINSUR - Uninsured in the total civilian noninstitutionalized population estimate MOE, 2016-2020 ACS 
-E_MINRTY - Minority estimate, 2016-2020 ACS
-M_MINRTY - Minority estimate MOE, 2016-2020 ACS	
-EP_MINRTY - Percentage minority estimate, 2016-2020 ACS
-MP_MINRTY - Percentage minority estimate MOE, 2016-2020 ACS
-EPL_MINRTY - Percentile percentage minority, estimate
+* COUNTY - County name
+* E_TOTPOP - Population estimate, 2016-2020 ACS
+* E_POV150 - Persons below 150% poverty estimate, 2016-2020 ACS (S1701_C01_040E)
+* M_POV150 - Persons below 150% poverty estimate, 2016-2020 ACS (S1701_C01_040M)
+* E_UNEMP - Civilian (age 16+) unemployed estimate, 2016-2020 ACS (DP03_0005E)
+* M_UNEMP - Civilian (age 16+) unemployed estimate, 2016-2020 ACS (DP03_0005M)
+* E_HBURD - Housing cost-burdened occupied housing units with annual income less than $75,000 (30%+ of income spent on housing costs) estimate, 2016-2020 ACS
+* M_HBURD - Housing cost-burdened occupied housing units with annual income less than $75,000 (30%+ of income spent on housing costs) estimate MOE, 2016-2020 ACS
+* E_NOHSDP - Persons (age 25+) with no high school diploma estimate, 2016-2020 ACS
+* M_NOHSDP - Persons (age 25+) with no high school diploma estimate MOE, 2016-2020 ACS
+* E_UNINSUR - Uninsured in the total civilian noninstitutionalized population estimate, 2016-2020 ACS
+* M_UNINSUR - Uninsured in the total civilian noninstitutionalized population estimate MOE, 2016-2020 ACS 
+* E_MINRTY - Minority estimate, 2016-2020 ACS
+* M_MINRTY - Minority estimate MOE, 2016-2020 ACS	
+* EP_MINRTY - Percentage minority estimate, 2016-2020 ACS
+* MP_MINRTY - Percentage minority estimate MOE, 2016-2020 ACS
+* EPL_MINRTY - Percentile percentage minority, estimate
+
 USDA National Farmers Market Directory via Kaggle’
-FMID - Farmer’s Market ID
-MarketName - Name of Farmer’s Market
-Street 
-City
-County
-State
-zip
-X - Longitude
-Y - Latitude
+* FMID - Farmer’s Market ID
+* MarketName - Name of Farmer’s Market
+* Street 
+* City
+* County
+* State
+* zip
+* X - Longitude
+* Y - Latitude
 
-Data Processing
-Saved CSV files from sources
-Read CSVs as DataFrames (DF) within Jupyter Notebook
-Transformed/cleaned data
-Selected columns
-Removed observations with missing county data
-Stored county names in lower-case to eliminate case-sensitivity during join
-Corrected errors in county names due to typos or incorrect data entries in USDA Farmer’s Market dataset
-Conducted outer join on lower-cased county names to map SVI data to farmer’s market data
-Created table in Postgres (relational database)
-Created schema with columns, data types, and primary key
-Exported merged data from dataframe to Postgres table
+### Data Processing
+1. Saved CSV files from sources
+2. Read CSVs as DataFrames (DF) within Jupyter Notebook
+3. Transformed/cleaned data
+   * Selected columns
+   * Removed observations with missing county data
+   * Stored county names in lower-case to eliminate case-sensitivity during join
+   * Corrected errors in county names due to typos or incorrect data entries in USDA Farmer’s Market dataset
+4. Conducted outer join on lower-cased county names to map SVI data to farmer’s market data
+5. Created table in Postgres (relational database)
+6. Created schema with columns, data types, and primary key
+7. Exported merged data from dataframe to Postgres table
 
-Discussion
+## Discussion
 The extract-transform-load process was used to create a relational Postgres SQL database with the farmer’s market data and social vulnerability data connected by county. While the final database has sufficient data to conduct the proposed analysis, there is some room for improvement. The farmer’s market data were missing a lot of values in one or more of the location variables. Dropping these rows with missing data reduced the number of farmer’s markets from 8,804 to 8,768.
