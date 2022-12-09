@@ -50,8 +50,7 @@ USDA National Farmers Market Directory via Kaggle’
    * Corrected errors in county names due to typos or incorrect data entries in USDA Farmer’s Market dataset
 4. Conducted outer join on lower-cased county names to map SVI data to farmer’s market data
 5. Created table in Postgres (relational database)
-6. Created schema with columns, data types, and primary key
-7. Exported merged data from dataframe to Postgres table
+6. Exported merged data from dataframe to Postgres table
 
 ## Discussion
 The extract-transform-load process was used to create a relational Postgres SQL database with the farmer’s market data and social vulnerability data connected by county. While the final database has sufficient data to conduct the proposed analysis, there is some room for improvement. The farmer’s market data were missing a lot of values in one or more of the location variables. Dropping these rows with missing data reduced the number of farmer’s markets from 8,804 to 8,768.
